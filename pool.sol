@@ -1,10 +1,16 @@
-pragma solidity >=0.5.0;
+//SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.0;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/utils/SafeERC20.sol";
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol";
 
-contract Pool {
-    using SafeERC20 for ERC20;
+
+interface Pool{
+    function deposit(address token, amount) external;
+    function withdrawal(address token, address to, uint256 amount) external;
+    function swap(address fromToken, address toToken,address from,address to, uint256 amount);
+}
+contract Pool is Pool{
 
     
+
 }
