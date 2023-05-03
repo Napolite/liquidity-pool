@@ -33,7 +33,7 @@ contract Pool{
         balances[msg.sender][tokenAddr] -= amount;
     }
 
-    function swapRates(address from, address to) view public returns gfs(uint256){
+    function swapRates(address from, address to) view public returns (uint256){
         IERC20 fromToken = IERC20(from);
         IERC20 toToken = IERC20(to);
 
@@ -43,8 +43,23 @@ contract Pool{
         return fromToken.balanceOf(address(this))/toToken.balanceOf(address(this));
     } 
 
-    // function swap(address from, address to, uint amount ) external{
-    //     IERC20 fromToken = IERC20(from);
-    //     IERC20 toToken = IERC20(to);
-    // }
+    function swap(address from, address to, uint amount ) external{
+        IERC20 fromToken = IERC20(from);
+        IERC20 toToken = IERC20(to);
+        uint256 rates = swapRates(from, to);
+
+        require(toToken.balanceOf(address(this)) != 0, "this token does not exist on this pool");
+        require(fromToken.balanceOf(msg.sender) >= amount, "User does not have enough for this transaction");
+
+        if(fromToken.allowance(msg.sender, address(this)) >= amount) {
+            fromToken.transferFrom(msg.sender, address(this), amount);
+            toToken.transferFrom(address(this), msg.sender, amount*rates);
+            }
+        else {
+            fromToken.approve(address(this), 0);
+            fromToken.approve(address(this), amount);
+           fromToken.transferFrom(msg.sender, address(this), amount);
+           }
+
+    }
 }
