@@ -35,6 +35,24 @@
 				],
 				"stateMutability": "view",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "tokenAddr",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawal",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -73,11 +91,11 @@
 			]
 		},
 		"pool.sol": {
-			"keccak256": "0xb6f93cf0fbf2b24c236adb3aeee987481749e9f057ff1d815b8d2e9f9bbeea54",
+			"keccak256": "0x750aa247a8a4f9c9f8ac92db7487eef6cc618035f42f6a20ab034d60e62c13ed",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://21994d03cc6b3e26c0a440567e7ee864d804056bd9f134943022a4909b270a43",
-				"dweb:/ipfs/QmYx5peyRRc8YAWaJyEK8SNZ8XAu3XnnqPCjqAAtPUqFma"
+				"bzz-raw://a02f8e08c85b7ec907b3315c403deea597145288fbe838b9a3dd4bb4523a3e3e",
+				"dweb:/ipfs/QmSyZBgG5daH5Voh4HfyGKt41LSHPo357uFBDxvDDkkVAV"
 			]
 		}
 	},

@@ -22,9 +22,15 @@ contract Pool{
             token.approve(address(this), 0);
             token.approve(address(this), amount);
             token.transferFrom(msg.sender, address(this), amount);
-            balances[msg.sender][tokenAddr] = amount;      
+            balances[msg.sender][tokenAddr] += amount;      
         }
     }
 
-    // function withdrawal(address tokenAddr, uint amount) external{}
+    function withdrawal(address tokenAddr, uint amount) external{
+        token = IERC20(tokenAddr);
+        if(balances[msg.sender][tokenAddr] >= amount) revert("user does not have enough deposit for this withdrawal");
+        
+        token.transfer(msg.sender, amount);
+        balances[msg.sender][tokenAddr] -= amount;
+    }
 }
