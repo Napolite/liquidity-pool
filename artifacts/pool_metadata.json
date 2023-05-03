@@ -27,12 +27,7 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "fromToken",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "toToken",
+						"name": "from",
 						"type": "address"
 					},
 					{
@@ -111,11 +106,11 @@
 			]
 		},
 		"pool.sol": {
-			"keccak256": "0x750aa247a8a4f9c9f8ac92db7487eef6cc618035f42f6a20ab034d60e62c13ed",
+			"keccak256": "0xabfd78f534b185dddaba6a42ec5403ac702f59f131bd277b21cec859801ce646",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://a02f8e08c85b7ec907b3315c403deea597145288fbe838b9a3dd4bb4523a3e3e",
-				"dweb:/ipfs/QmSyZBgG5daH5Voh4HfyGKt41LSHPo357uFBDxvDDkkVAV"
+				"bzz-raw://e7fff7e78f5c9a77d2400d6a6c16562ba4179f11aafdfff5f29c8d986b492e67",
+				"dweb:/ipfs/QmU1g864F6HJJaQGFQzLd1LyAv2HbcfKmKU2iuhvK8Xe59"
 			]
 		}
 	},

@@ -50,7 +50,7 @@
 		"gasEstimates": null,
 		"methodIdentifiers": {
 			"deposit(address,uint256)": "47e7ef24",
-			"swap(address,address,address,uint256)": "a9678a18",
+			"swap(address,address,uint256)": "df791e50",
 			"withdrawal(address,address,uint256)": "0029c0b4"
 		}
 	},
@@ -77,12 +77,7 @@
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "fromToken",
-					"type": "address"
-				},
-				{
-					"internalType": "address",
-					"name": "toToken",
+					"name": "from",
 					"type": "address"
 				},
 				{
