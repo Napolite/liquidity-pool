@@ -6,10 +6,12 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contr
 
 interface pool{
     function deposit(address tokenAddr,uint amount) external;
-    function withdrawal(address token, address to, uint256 amount) external;
+    function withdrawal(address token, uint256 amount) external;
     function swap(address from, address to, uint256 amount) external;
+    function swapRates(address from, address to) external view returns (uint256);
+    function balanceOf(address user, address token) external view returns (uint256);
 }
-contract Pool{
+contract Pool is pool{
 
     mapping(address => mapping(address => uint)) public balances;
 
@@ -27,7 +29,7 @@ contract Pool{
 
     function withdrawal(address tokenAddr, uint amount) external{
         IERC20 token = IERC20(tokenAddr);
-    require(balances[msg.sender][tokenAddr] >= amount,"user does not have enough deposit for this withdrawal");
+         require(balances[msg.sender][tokenAddr] >= amount,"user does not have enough deposit for this withdrawal");
         
         token.transfer(msg.sender, amount);
         balances[msg.sender][tokenAddr] -= amount;
@@ -48,18 +50,24 @@ contract Pool{
         IERC20 toToken = IERC20(to);
         uint256 rates = swapRates(from, to);
 
-        require(toToken.balanceOf(address(this)) != 0, "this token does not exist on this pool");
+        require(toToken.balanceOf(address(this)) >= amount*rates, "Not enough token on the contract for the transaction");
         require(fromToken.balanceOf(msg.sender) >= amount, "User does not have enough for this transaction");
 
         if(fromToken.allowance(msg.sender, address(this)) >= amount) {
-            fromToken.transferFrom(msg.sender, address(this), amount);
-            toToken.transferFrom(address(this), msg.sender, amount*rates);
+                fromToken.transferFrom(msg.sender, address(this), amount);
+                toToken.transferFrom(address(this), msg.sender, amount*rates);
             }
-        else {
-            fromToken.approve(address(this), 0);
-            fromToken.approve(address(this), amount);
-           fromToken.transferFrom(msg.sender, address(this), amount);
-           }
 
+        else {
+                fromToken.approve(address(this), 0);
+                fromToken.approve(address(this), amount);
+                fromToken.transferFrom(msg.sender, address(this), amount);
+                toToken.transferFrom(address(this), msg.sender, amount*rates);
+        }
+
+    }
+
+    function balanceOf(address user, address token) external view returns (uint256){
+        return balances[user][token];
     }
 }

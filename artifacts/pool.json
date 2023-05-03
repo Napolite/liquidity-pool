@@ -49,12 +49,38 @@
 		},
 		"gasEstimates": null,
 		"methodIdentifiers": {
+			"balanceOf(address,address)": "f7888aec",
 			"deposit(address,uint256)": "47e7ef24",
 			"swap(address,address,uint256)": "df791e50",
-			"withdrawal(address,address,uint256)": "0029c0b4"
+			"swapRates(address,address)": "82ce2b57",
+			"withdrawal(address,uint256)": "5a6b26ba"
 		}
 	},
 	"abi": [
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "user",
+					"type": "address"
+				},
+				{
+					"internalType": "address",
+					"name": "token",
+					"type": "address"
+				}
+			],
+			"name": "balanceOf",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
 		{
 			"inputs": [
 				{
@@ -100,12 +126,31 @@
 			"inputs": [
 				{
 					"internalType": "address",
-					"name": "token",
+					"name": "from",
 					"type": "address"
 				},
 				{
 					"internalType": "address",
 					"name": "to",
+					"type": "address"
+				}
+			],
+			"name": "swapRates",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "token",
 					"type": "address"
 				},
 				{

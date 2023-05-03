@@ -9,6 +9,30 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "",
 						"type": "address"
 					},
@@ -149,11 +173,11 @@
 			]
 		},
 		"pool.sol": {
-			"keccak256": "0xbc9f99b05f4fc0cf0983e1b86a439bb46cc65517790197bf2f0b59dfbf22fc42",
+			"keccak256": "0xeb3d69cf0af48f769696ffbece4a25a8dcde2d18a545ef42661baeedcdc72d2c",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://d571ab0cedfd7741ddf0b18b9b652ea019074c793067a8bef25cacf1f9c6325d",
-				"dweb:/ipfs/QmU9XcD38uDv8u5p55oX4Z6WddeetfRFSL95jpVbRG99sx"
+				"bzz-raw://9b0834c3c4fc27b51a16671b705a9c8a4b3fc52ec9e9f937a0af7e522084bb33",
+				"dweb:/ipfs/QmTkTStuhLCybjDMdFD2Px6ddMoJ9Hhr212amfJL94bfvH"
 			]
 		}
 	},
