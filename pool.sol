@@ -48,8 +48,8 @@ contract Pool is pool{
         require(toToken.balanceOf(address(this)) >= amount*rates, "Not enough token on the contract for the transaction");
         require(fromToken.balanceOf(msg.sender) >= amount, "User does not have enough for this transaction");
 
-                require(fromToken.transferFrom(msg.sender, address(this), amount), "Cannot withdraw tokens");
-                require(toToken.transfer( msg.sender, amount*rates), "Cannot send tokens");
+        require(fromToken.transferFrom(msg.sender, address(this), amount), "Cannot withdraw tokens");
+        require(toToken.transfer( msg.sender, amount*rates), "Cannot send tokens");
     }
 
     function balanceOf(address user, address token) external view returns (uint256){
