@@ -11,13 +11,15 @@ interface pool{
     function swapRates(address from, address to) external view returns (uint256);
     function balanceOf(address user, address token) external view returns (uint256);
 }
+
+
 contract Pool is pool{
 
     mapping(address => mapping(address => uint)) public balances;
 
     function deposit(address tokenAddr, uint amount) external {
         IERC20 token = IERC20(tokenAddr);
-        require(token.balanceOf(msg.sender) >= amount, "ou don't have enough tokens to swap withYInsufficient balance");
+        require(token.balanceOf(msg.sender) >= amount, "Insufficient balances");
         require(token.transferFrom(msg.sender,address(this), amount), "Deposit tokens failed");
         balances[msg.sender][tokenAddr] += amount;
     }
