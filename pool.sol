@@ -15,23 +15,18 @@ contract Pool is pool{
 
     mapping(address => mapping(address => uint)) public balances;
 
-    function deposit(address tokenAddr, uint amount) external{
+    function deposit(address tokenAddr, uint amount) external {
         IERC20 token = IERC20(tokenAddr);
-        require(token.balanceOf(msg.sender) >= amount, "You don't have enough tokens to swap with");
-        if(token.allowance(msg.sender, address(this)) >= amount) token.transferFrom(msg.sender, address(this), amount);
-        else {
-            token.approve(address(this), 0);
-            token.approve(address(this), amount);
-            token.transferFrom(msg.sender, address(this), amount);
-            balances[msg.sender][tokenAddr] += amount;      
-        }
+        require(token.balanceOf(msg.sender) >= amount, "ou don't have enough tokens to swap withYInsufficient balance");
+        require(token.transferFrom(msg.sender,address(this), amount), "Deposit tokens failed");
+        balances[msg.sender][tokenAddr] += amount;
     }
 
     function withdrawal(address tokenAddr, uint amount) external{
         IERC20 token = IERC20(tokenAddr);
-         require(balances[msg.sender][tokenAddr] >= amount,"user does not have enough deposit for this withdrawal");
+         require(balances[msg.sender][tokenAddr] >= amount,"Insufficient balance for withdrawal");
         
-        token.transfer(msg.sender, amount);
+        require(token.transfer(msg.sender, amount), "Witdraw tokens failed");
         balances[msg.sender][tokenAddr] -= amount;
     }
 
@@ -42,7 +37,7 @@ contract Pool is pool{
         require(fromToken.balanceOf(address(this)) != 0, "This token does not exist on this pool");
         require(toToken.balanceOf(address(this)) != 0, "this token does not exist on this pool");
 
-        return fromToken.balanceOf(address(this))/toToken.balanceOf(address(this));
+        return toToken.balanceOf(address(this))/fromToken.balanceOf(address(this));
     } 
 
     function swap(address from, address to, uint amount ) external{
@@ -53,18 +48,8 @@ contract Pool is pool{
         require(toToken.balanceOf(address(this)) >= amount*rates, "Not enough token on the contract for the transaction");
         require(fromToken.balanceOf(msg.sender) >= amount, "User does not have enough for this transaction");
 
-        if(fromToken.allowance(msg.sender, address(this)) >= amount) {
-                fromToken.transferFrom(msg.sender, address(this), amount);
-                toToken.transferFrom(address(this), msg.sender, amount*rates);
-            }
-
-        else {
-                fromToken.approve(address(this), 0);
-                fromToken.approve(address(this), amount);
-                fromToken.transferFrom(msg.sender, address(this), amount);
-                toToken.transferFrom(address(this), msg.sender, amount*rates);
-        }
-
+                require(fromToken.transferFrom(msg.sender, address(this), amount), "Cannot withdraw tokens");
+                require(toToken.transfer( msg.sender, amount*rates), "Cannot send tokens");
     }
 
     function balanceOf(address user, address token) external view returns (uint256){

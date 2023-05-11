@@ -1,113 +1,96 @@
-// SPDX-License-Identifier: GPL-3.0
-pragma solidity >=0.5.0;
+pragma solidity =0.5.16;
 
-interface ERC20 {
-    function name() external view returns(string memory);
-    function symbol() external view returns(string memory);
-    function totalSupply() external view returns (uint);
-    function balanceOf(address who) external view returns (uint);
-    function transfer(address to, uint value) external;
-    event Transfer(address indexed from, address indexed to, uint value);
-    function allowance(address owner, address spender) external returns (uint);
-    function transferFrom(address from, address to, uint value) external;
-    function approve(address spender, uint value) external;
+import "https://github.com/Uniswap/v2-core/blob/master/contracts/interfaces/IUniswapV2ERC20.sol";
+import "https://github.com/Uniswap/v2-core/blob/master/contracts/libraries/SafeMath.sol";
+
+contract UniswapV2ERC20 is IUniswapV2ERC20 {
+    using SafeMath for uint;
+
+    string public constant name = 'Uniswap V2';
+    string public constant symbol = 'UNI-V2';
+    uint8 public constant decimals = 18;
+    uint  public totalSupply;
+    mapping(address => uint) public balanceOf;
+    mapping(address => mapping(address => uint)) public allowance;
+
+    bytes32 public DOMAIN_SEPARATOR;
+    // keccak256("Permit(address owner,address spender,uint256 value,uint256 nonce,uint256 deadline)");
+    bytes32 public constant PERMIT_TYPEHASH = 0x6e71edae12b1b97f4d1f60370fef10105fa2faae0126114a169c64845d6126c9;
+    mapping(address => uint) public nonces;
+
     event Approval(address indexed owner, address indexed spender, uint value);
-}
+    event Transfer(address indexed from, address indexed to, uint value);
 
-interface Ownable{
-    function  Owner() external view returns (address);
-    function transferOwnership(address sender) external;
-}
-
-
-contract token is ERC20, Ownable {
-    uint public _totalSupply;
-    address public contractOwner;
-    string public _name;
-    string public _symbol;
-    uint public decimals ;
-    mapping(address => uint256) public balances;
-    mapping (address => mapping (address => uint)) public allowed;
-
-
-    constructor() {
-        contractOwner = msg.sender;
-        _name="Napolite Provider Token";
-        _symbol = "NPT";
-        mint(1000000000);
-    }
-
-
-    function mint(uint256 amount) private {
-        require(msg.sender == contractOwner);
-        balances[contractOwner] += amount;
-        _totalSupply += amount;
-    }
-
-    function name() public view override returns(string memory){
-        return _name;
-    }
-
-    function symbol() public view override returns(string memory){
-        return _symbol;
-    }
-
-    error InsuficientBalance(uint256 requested, uint256 available);
-
-
-    function transfer(address receiver, uint256 amount) public override{
-        require(msg.sender != receiver, "you cannot transfer tokens to same address");
-        if (amount > balances[msg.sender]) {
-            revert InsuficientBalance({
-                requested: amount,
-                available: balances[msg.sender]
-            });
+    constructor() public {
+        uint chainId;
+        assembly {
+            chainId := chainid
         }
+        DOMAIN_SEPARATOR = keccak256(
+            abi.encode(
+                keccak256('EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)'),
+                keccak256(bytes(name)),
+                keccak256(bytes('1')),
+                chainId,
+                address(this)
+            )
+        );
 
-        balances[msg.sender] -= amount;
-        balances[receiver] += amount;
-        emit Transfer(msg.sender, receiver, amount);
+        _mint(msg.sender, 10000000);
     }
 
-    function transferFrom(address from, address to, uint amount) public override{
-        uint allowanceAmount = allowed[from][msg.sender];
-        require(from != to, "you cannot transfer tokens to same address");
-        require(allowanceAmount < amount, "Contract not allowed to spend amount");
-         if (amount > balances[from]) {
-            revert InsuficientBalance({
-                requested: amount,
-                available: balances[from]
-            });
+    function _mint(address to, uint value) internal {
+        totalSupply = totalSupply.add(value);
+        balanceOf[to] = balanceOf[to].add(value);
+        emit Transfer(address(0), to, value);
+    }
+
+    function _burn(address from, uint value) internal {
+        balanceOf[from] = balanceOf[from].sub(value);
+        totalSupply = totalSupply.sub(value);
+        emit Transfer(from, address(0), value);
+    }
+
+    function _approve(address owner, address spender, uint value) private {
+        allowance[owner][spender] = value;
+        emit Approval(owner, spender, value);
+    }
+
+    function _transfer(address from, address to, uint value) private {
+        balanceOf[from] = balanceOf[from].sub(value);
+        balanceOf[to] = balanceOf[to].add(value);
+        emit Transfer(from, to, value);
+    }
+
+    function approve(address spender, uint value) external returns (bool) {
+        _approve(msg.sender, spender, value);
+        return true;
+    }
+
+    function transfer(address to, uint value) external returns (bool) {
+        _transfer(msg.sender, to, value);
+        return true;
+    }
+
+    function transferFrom(address from, address to, uint value) external returns (bool) {
+        if (allowance[from][msg.sender] != uint(-1)) {
+            allowance[from][msg.sender] = allowance[from][msg.sender].sub(value);
         }
-        balances[from] -= amount;
-        balances[to] += amount;
-        emit Transfer(from, to, amount);
+        _transfer(from, to, value);
+        return true;
     }
 
-    function totalSupply() public view override returns(uint){
-        return _totalSupply;
+    function permit(address owner, address spender, uint value, uint deadline, uint8 v, bytes32 r, bytes32 s) external {
+        require(deadline >= block.timestamp, 'UniswapV2: EXPIRED');
+        bytes32 digest = keccak256(
+            abi.encodePacked(
+                '\x19\x01',
+                DOMAIN_SEPARATOR,
+                keccak256(abi.encode(PERMIT_TYPEHASH, owner, spender, value, nonces[owner]++, deadline))
+            )
+        );
+        address recoveredAddress = ecrecover(digest, v, r, s);
+        require(recoveredAddress != address(0) && recoveredAddress == owner, 'UniswapV2: INVALID_SIGNATURE');
+        _approve(owner, spender, value);
     }
-
-    function balanceOf(address who) public view override returns(uint){
-        return balances[who];
-    }
-
-    function approve(address spender, uint amount) public override{
-        allowed[msg.sender][spender] = amount;
-        emit Approval(msg.sender, spender, amount);
-    }
-
-    function allowance(address owner, address spender) public view override returns(uint256) {
-        return allowed[owner][spender];
-    }
-
-    function Owner() public view override returns (address){
-        return contractOwner;
-    }
-
-    function transferOwnership(address newOwner) public override{
-        require(msg.sender == contractOwner, "you are not the owner of this contract");
-        contractOwner = newOwner;
-    }
-
 }
