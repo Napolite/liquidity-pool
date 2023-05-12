@@ -5,15 +5,15 @@
 
 * [Introduction](https://github.com/Napolite/liquidity-pool#Introduction)
 * [Liquidity Pools](https://github.com/Napolite/liquidity-pool#Liquidity-Pools)
-    *[What is a Liquidity Pool](https://github.com/Napolite/liquidity-pool#What-is-a-Liquidity-Pool)
-    *[Uses Of Liquidity Pools](https://github.com/Napolite/liquidity-pool#Uses-of-Liquidity-Pools)
-    *[Importance of a Liquidity Pool](https://github.com/Napolite/liquidity-pool#Importance-of-a-Liquidity-Pool)
-    *[Security risk of a liquidity Pool](https://github.com/Napolite/liquidity-pool#Security-risks-of-a-liquidity-Pool)
+    * [What is a Liquidity Pool](https://github.com/Napolite/liquidity-pool#What-is-a-Liquidity-Pool)
+    * [Uses Of Liquidity Pools](https://github.com/Napolite/liquidity-pool#Uses-of-Liquidity-Pools)
+    * [Importance of a Liquidity Pool](https://github.com/Napolite/liquidity-pool#Importance-of-a-Liquidity-Pool)
+    * [Security risk of a liquidity Pool](https://github.com/Napolite/liquidity-pool#Security-risks-of-a-liquidity-Pool)
 * [The Celo Network](https://github.com/Napolite/liquidity-pool#The-Celo-Network)
 * [How to build a liquidity pool on the celo network](https://github.com/Napolite/liquidity-pool#How-to-Build-a-Liquidity-Pool-on-the-Celo-Network)
-* [Hosting your liquidity pool on the celo network](ttps://github.com/Napolite/liquidity-pool#Hosting-your-Liquidity-Pool-on-the-Celo-Network)
-* [Deploying your contract](ttps://github.com/Napolite/liquidity-pool#Deploying-the-Smart-Contract-Voting-System-on-Celo-Testnet-Blockchain)
-* [Conclusion](ttps://github.com/Napolite/liquidity-pool#Conclusion)
+* [Hosting your liquidity pool on the celo network](https://github.com/Napolite/liquidity-pool#Hosting-your-Liquidity-Pool-on-the-Celo-Network)
+* [Deploying your contract](https://github.com/Napolite/liquidity-pool#Deploying-the-Smart-Contract-Voting-System-on-Celo-Testnet-Blockchain)
+* [Conclusion](https://github.com/Napolite/liquidity-pool#Conclusion)
 
 
 ## Introduction
