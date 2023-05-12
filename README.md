@@ -12,7 +12,7 @@
 * [The Celo Network](https://github.com/Napolite/liquidity-pool#The-Celo-Network)
 * [How to build a liquidity pool on the celo network](https://github.com/Napolite/liquidity-pool#How-to-Build-a-Liquidity-Pool-on-the-Celo-Network)
 * [Hosting your liquidity pool on the celo network](https://github.com/Napolite/liquidity-pool#Hosting-your-Liquidity-Pool-on-the-Celo-Network)
-* [Deploying your contract](https://github.com/Napolite/liquidity-pool#Deploying-the-Smart-Contract-Voting-System-on-Celo-Testnet-Blockchain)
+* [Deploying your contract](https://github.com/Napolite/liquidity-pool#Deploying-the-Smart-Contract-on-Celo-Testnet-Blockchain)
 * [Conclusion](https://github.com/Napolite/liquidity-pool#Conclusion)
 
 
@@ -183,7 +183,7 @@ To deploy your contract on the Celo network, you will need to follow the steps b
 
 4. Follow the steps provided below to deploy the contract on the Celo network.
 
-## Deploying the Smart Contract Voting System on Celo Testnet Blockchain
+## Deploying the Smart Contract on Celo Testnet Blockchain
 ---
 
 To compile and deploy a smart contract on Remix IDE using its Virtual Machine, you need to follow these steps:
@@ -215,9 +215,6 @@ To deploy using the celo Testnet and metamask, follow the steps below:
 1. Click "Save" to add the network to MetaMask.
 
 1. You should now see the Celo Alfajores Testnet option in the network dropdown at the top of your MetaMask extension. Select it to switch to the Alfajores Testnet network.
-
-
-https://user-images.githubusercontent.com/92434749/235715417-8fe2840f-13b9-4372-a319-10684ba7734c.mp4
 
 
 
