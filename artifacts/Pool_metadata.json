@@ -173,11 +173,11 @@
 			]
 		},
 		"pool.sol": {
-			"keccak256": "0x5ebae6303d185efd1e28511c20f3b0498eb7e44c41cd88c06e313937a15521e6",
+			"keccak256": "0x933dc2b54d82a8d9b9db640a832f2890478d1bc3931b6f80c2b242a232cb90b8",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://ab60a2a8edb6c5089fe36e61e8fe2bb34412ba1dc8dba4758dd38027bd04f660",
-				"dweb:/ipfs/QmdnDUsnfXwxevKSZQUx3wJFREGrH337P8pKRcPxGa5TT1"
+				"bzz-raw://5c4c3b00d72b69813e43e9c55b32ca04c38872512b72d41db18232a3be153289",
+				"dweb:/ipfs/QmZ6tpanqjBnT1Pfdb1Vd4bsYHB1g46UcNZKUT3GuKYwsC"
 			]
 		}
 	},
