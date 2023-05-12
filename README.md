@@ -1,4 +1,9 @@
-Building a liquidity pool
+Building a Solidity liquidity pool
+[What is a Liquidity Pool]()
+[What you need]()
+[Building A Liquidity Pool]()
+[Conclusion]()
+
 
 What is a Liquidity Pool
 
@@ -14,21 +19,23 @@ and your attention.
 
 Let’s Begin
 
+Building A Liquidity Pool
+
 We will start by defining our pragma version to use solidity compiler version 0.8.0.
 
-Pragma solidity 0.8.0;
+/// Pragma solidity 0.8.0;
 
 Now this is not important, but it is advisable to have an interface so you can map out the behavior of your smart contract, but it is not compulsory. We will, however, write one to determine how our contract will behave.
 
 
 
-interface Pool{
+/// interface Pool{
    function deposit(address tokenAddr,uint256 amount) external;
    function withdrawal(address token, uint256 amount) external;
    function swap(address from, address to, uint256 amount) external;
    function swapRates(address from, address to) external view returns (uint256);
    function balanceOf(address user, address token) external view returns (uint256);
-}
+}///
 
 
 
@@ -38,11 +45,11 @@ Now we are going to start the main contract.
 
 
 
-contract Pool is pool{
+///contract Pool is pool{
 
 
    mapping(address => mapping(address => uint)) public balances;
-}
+}///
 
 We have our balances variable as our only global variable because it is the only variable we are going to update throughout the contract, not just one function.
 
@@ -61,12 +68,12 @@ Now we can use erc20 token functions in our contract.
 
 
 
-function deposit(address tokenAddr, uint amount) external {
+///function deposit(address tokenAddr, uint amount) external {
        IERC20 token = IERC20(tokenAddr);
        require(token.balanceOf(msg.sender) >= amount, "Insufficient balances");
        require(token.transferFrom(msg.sender,address(this), amount), "Deposit tokens failed");
        balances[msg.sender][tokenAddr] += amount;
-   }
+   }///
 
 
 
@@ -76,13 +83,13 @@ Next we need a feature that allows users to remove or reclaim their tokens.
 
 
 
-function withdrawal(address tokenAddr, uint amount) external{
+///function withdrawal(address tokenAddr, uint amount) external{
        IERC20 token = IERC20(tokenAddr);
         require(balances[msg.sender][tokenAddr] >= amount,"Insufficient balance for withdrawal");
       
        require(token.transfer(msg.sender, amount), "Withdraw tokens failed");
        balances[msg.sender][tokenAddr] -= amount;
-   }
+   }///
 
 
 
@@ -94,7 +101,7 @@ First we need a function to get our swap rates. We need two arguments, the token
 
 
 
-function swapRates(address from, address to) view public returns (uint256){
+///function swapRates(address from, address to) view public returns (uint256){
        IERC20 fromToken = IERC20(from);
        IERC20 toToken = IERC20(to);
 
@@ -104,7 +111,7 @@ function swapRates(address from, address to) view public returns (uint256){
 
 
        return toToken.balanceOf(address(this))/fromToken.balanceOf(address(this));
-   }
+   }///
 
 
 
@@ -113,7 +120,7 @@ Now that we have our rates function, we can now go ahead to create our swap feat
 
 
 
-function swap(address from, address to, uint amount ) external{
+///function swap(address from, address to, uint amount ) external{
        IERC20 fromToken = IERC20(from);
        IERC20 toToken = IERC20(to);
        uint256 rates = swapRates(from, to);
@@ -125,9 +132,10 @@ function swap(address from, address to, uint amount ) external{
 
        require(fromToken.transferFrom(msg.sender, address(this), amount), "Cannot withdraw tokens");
        require(toToken.transfer( msg.sender, amount*rates), "Cannot send tokens");
-   }
+   }///
 
 
+Conclusion
 
 So, That is basically the implementation of a basic liquidity pool. Although many emerging DeFis fork, or copy heavily from Uniswap protocol , it is important to understand how the basics work and how to transverse the uniswap code.
 
