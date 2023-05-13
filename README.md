@@ -1,5 +1,9 @@
 
-## Liquidity Pools: The simple mystery behind them, and building one in the most basic form
+# Liquidity Pools: The simple mystery behind them, and building one in the most basic form
+
+## Introduction
+The decentralized finance (DeFi) ecosystem has been rapidly growing, and one of the key components driving its success is liquidity pools. Liquidity pools are decentralized pools of tokens that provide liquidity for specific assets, creating a more stable and predictable market for trading. In this tutorial, we will explore what liquidity pools are, their uses, and the importance they play in the DeFi ecosystem. It will also guide users in building a basic liquidity pool on the Celo network.
+
 
 ## Table of Content
 
@@ -16,9 +20,13 @@
 * [Conclusion](https://github.com/Napolite/liquidity-pool#Conclusion)
 
 
-## Introduction
+## Objective
+
+The objective of this tutorial is to provide an understanding of liquidity pools, their uses, and the importance they play in the decentralized finance (DeFi) ecosystem. Additionally, this tutorial aims to guide users in building a basic liquidity pool on the Celo network, while also highlighting the potential security risks associated with liquidity pools and how to mitigate them. 
+By the end of this tutorial, you should have a clear understanding of how liquidity pools work, their benefits, and the necessary precautions needed to ensure the safety of their liquidity pool investment.
 
 First let us Talk about Liquidity Pools and The Celo Network
+
 
 ## Liquidity Pools
 
@@ -46,6 +54,7 @@ They facilitate the trading of tokens that may not have a large market or tradin
 Liquidity pools can be used to create stablecoins, which are pegged to a fiat currency or another asset, providing a reliable store of value for DeFi users.
 They enable yield farming, which involves providing liquidity to a pool and earning rewards in the form of additional tokens or fees.
 Liquidity pools can be used to create derivatives, such as options and futures, allowing investors to hedge their risks and speculate on future price movements.
+
 Overall, liquidity pools play a critical role in enabling DeFi to function effectively, providing liquidity, price discovery, and opportunities for investors to generate returns. As the DeFi ecosystem continues to grow, liquidity pools are likely to become even more important, powering new use cases and providing greater flexibility and efficiency for DeFi users
 
 ## Security risks of a Liquidity Pool
@@ -100,44 +109,54 @@ Now that you have the prerequisites for building a liquidity pool, here is how t
 
 To start with, we begin by importing the ERC20 interface from the OpenZeppelin library since we will be handling ERC20 tokens.
 
+```solidity
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
 
+```
+
 Next, we will create the pool interface. The pool interface will have 4 functions, namely deposit, withdrawal, swap and swap rates. The pool will have the following format:
 
-/// interface pool{
+```solidity
+interface pool{
     function deposit(address tokenAddr,uint amount) external;
     function withdrawal(address token, uint256 amount) external;
     function swap(address from, address to, uint256 amount) external;
     function swapRates(address from, address to) external view returns (uint256);
     function balanceOf(address user, address token) external view returns (uint256);
-}///
+}
+```
 
 The deposit function allows users to deposit tokens into the liquidity pool. This creates the initial liquidity pool for the tokens.
 
-/// function deposit(address tokenAddr, uint amount) external {
+```solidity
+function deposit(address tokenAddr, uint amount) external {
 
 IERC20 token = IERC20(tokenAddr);
         require(token.balanceOf(msg.sender) >= amount, "Insufficient balances");
         require(token.transferFrom(msg.sender,address(this), amount), "Deposit tokens failed");
         balances[msg.sender][tokenAddr] += amount;
-    }///
+    }
+```
 
 The withdrawal function allows users to withdraw tokens from the liquidity pool.
 
-/// function withdrawal(address tokenAddr, uint amount) external{
+```solidity
+function withdrawal(address tokenAddr, uint amount) external{
         IERC20 token = IERC20(tokenAddr);
          require(balances[msg.sender][tokenAddr] >= amount,"Insufficient balance for withdrawal");
         
         require(token.transfer(msg.sender, amount), "Witdraw tokens failed");
         balances[msg.sender][tokenAddr] -= amount;
-    }///
+    }
+```
 
 The swap function allows users to swap tokens from one token to another. This is particularly useful when users want to convert their tokens from one token to another.
 
-/// function swap(address from, address to, uint amount ) external{
+```solidity
+function swap(address from, address to, uint amount ) external{
         IERC20 fromToken= IERC20(from);
         IERC20 toToken = IERC20(to);
         uint256 rates = swapRates(from, to);
@@ -147,11 +166,13 @@ The swap function allows users to swap tokens from one token to another. This is
 
         require(fromToken.transferFrom(msg.sender, address(this), amount), "Cannot withdraw tokens");
         require(toToken.transfer( msg.sender, amount*rates), "Cannot send tokens");
-    }///
+    }
+```
 
 The swap rates function allows users to check the exchange rate between two different tokens.
 
- /// function swapRates(address from, address to) view public returns (uint256){
+```solidity
+function swapRates(address from, address to) view public returns (uint256){
         IERC20 fromToken = IERC20(from);
         IERC20 toToken = IERC20(to);
 
@@ -159,13 +180,16 @@ The swap rates function allows users to check the exchange rate between two diff
         require(toToken.balanceOf(address(this)) != 0, "this token does not exist on this pool");
 
         return toToken.balanceOf(address(this))/fromToken.balanceOf(address(this));
-    } ///
+    }
+```
 
 Finally, the balance of function allows users to check their balance in the liquidity pool.
 
-/// function balanceOf(address user, address token) external view returns (uint256){
+```solidity
+function balanceOf(address user, address token) external view returns (uint256){
         return balances[user][token];
-    }/// 
+    }
+```
 
 And that is how you create your liquidity pool smart contract on Celo network.
 
