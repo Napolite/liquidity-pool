@@ -1,9 +1,15 @@
 
-## Liquidity Pools: The simple mystery behind them, and building one in the most basic form
+# Liquidity Pools: The simple mystery behind them, and building one in the most basic form
+
+## Introduction
+The decentralized finance (DeFi) ecosystem has been rapidly growing, and one of the key components driving its success is liquidity pools. Liquidity pools are decentralized pools of tokens that provide liquidity for specific assets, creating a more stable and predictable market for trading. In this tutorial, we will explore what liquidity pools are, their uses, and the importance they play in the DeFi ecosystem. It will also guide users in building a basic liquidity pool on the Celo network.
+
 
 ## Table of Content
 
 * [Introduction](https://github.com/Napolite/liquidity-pool#Introduction)
+* [Objective](https://github.com/Napolite/liquidity-pool#Objective)
+* [Prerequisites for Building a Liquidity Pool](https://github.com/Napolite/liquidity-pool#Prerequisites-for-Building-a-Liquidity-Pool)
 * [Liquidity Pools](https://github.com/Napolite/liquidity-pool#Liquidity-Pools)
     * [What is a Liquidity Pool](https://github.com/Napolite/liquidity-pool#What-is-a-Liquidity-Pool)
     * [Uses Of Liquidity Pools](https://github.com/Napolite/liquidity-pool#Uses-of-Liquidity-Pools)
@@ -16,9 +22,24 @@
 * [Conclusion](https://github.com/Napolite/liquidity-pool#Conclusion)
 
 
-## Introduction
+## Objective
+
+The objective of this tutorial is to provide an understanding of liquidity pools, their uses, and the importance they play in the decentralized finance (DeFi) ecosystem. Additionally, this tutorial aims to guide users in building a basic liquidity pool on the Celo network, while also highlighting the potential security risks associated with liquidity pools and how to mitigate them. 
+By the end of this tutorial, you should have a clear understanding of how liquidity pools work, their benefits, and the necessary precautions needed to ensure the safety of their liquidity pool investment.
+
+## Prerequisites for Building a Liquidity Pool
+
+Before building a liquidity pool, you will need a few things:
+
+- An understanding of Solidity and smart contract programming.
+- An understanding of the ERC20 token standard.
+- Access to a blockchain development environment such as Truffle or Remix.
+- Knowledge of the Celo network, its tools, and its features.
+- Knowledge of how to create contracts on the Celo network.
+
 
 First let us Talk about Liquidity Pools and The Celo Network
+
 
 ## Liquidity Pools
 
@@ -41,25 +62,27 @@ Another use of liquidity pools is to bring liquidity to new tokens. When a new t
 ## Importance of a Liquidity Pool
 Liquidity pools have become a crucial component of the decentralized finance (DeFi) ecosystem, playing an essential role in enabling a wide range of DeFi applications. Here are some of the key reasons why liquidity pools are important to the DeFi community:
 
-Liquidity pools provide a way to exchange tokens without requiring a centralized exchange, which can be costly and inefficient.
-They facilitate the trading of tokens that may not have a large market or trading volume, making it easier for investors to buy and sell these assets.
-Liquidity pools can be used to create stablecoins, which are pegged to a fiat currency or another asset, providing a reliable store of value for DeFi users.
-They enable yield farming, which involves providing liquidity to a pool and earning rewards in the form of additional tokens or fees.
-Liquidity pools can be used to create derivatives, such as options and futures, allowing investors to hedge their risks and speculate on future price movements.
+- Liquidity pools provide a way to exchange tokens without requiring a centralized exchange, which can be costly and inefficient.
+- They facilitate the trading of tokens that may not have a large market or trading volume, making it easier for investors to buy and sell these assets.
+- Liquidity pools can be used to create stablecoins, which are pegged to a fiat currency or another asset, providing a reliable store of value for DeFi users.
+- They enable yield farming, which involves providing liquidity to a pool and earning rewards in the form of additional tokens or fees.
+- Liquidity pools can be used to create derivatives, such as options and futures, allowing investors to hedge their risks and speculate on future price movements.
+
 Overall, liquidity pools play a critical role in enabling DeFi to function effectively, providing liquidity, price discovery, and opportunities for investors to generate returns. As the DeFi ecosystem continues to grow, liquidity pools are likely to become even more important, powering new use cases and providing greater flexibility and efficiency for DeFi users
 
 ## Security risks of a Liquidity Pool
 Liquidity pools have gained significant popularity in the decentralized finance (DeFi) ecosystem, but they also come with their own set of security issues. Here are some of the key security challenges to consider when it comes to liquidity pools:
 
-Smart Contract Vulnerabilities: Liquidity pool contracts are powered by smart contracts, which are susceptible to security vulnerabilities that can be exploited by attackers. These vulnerabilities include reentrancy attacks, integer overflow/underflow attacks, and more. It's crucial to ensure that the smart contract code is secure and audited by experienced professionals before deploying a liquidity pool.
+### Smart Contract Vulnerabilities
+Liquidity pool contracts are powered by smart contracts, which are susceptible to security vulnerabilities that can be exploited by attackers. These vulnerabilities include reentrancy attacks, integer overflow/underflow attacks, and more. It's crucial to ensure that the smart contract code is secure and audited by experienced professionals before deploying a liquidity pool.
 
-Impermanent Loss: Liquidity providers in a pool are exposed to a concept called "impermanent loss," which is the difference between the returns they would have earned by holding tokens outside the pool and the returns they earn by holding tokens inside the pool. Impermanent loss can happen when the price of tokens in the pool changes significantly, leading to losses for liquidity providers.
+- **Impermanent Loss**: Liquidity providers in a pool are exposed to a concept called "impermanent loss," which is the difference between the returns they would have earned by holding tokens outside the pool and the returns they earn by holding tokens inside the pool. Impermanent loss can happen when the price of tokens in the pool changes significantly, leading to losses for liquidity providers.
 
-Oracle Attacks: Liquidity pools rely on oracles to determine the price of tokens in the pool. If these oracles are not secure or are tampered with, the price of the tokens can be manipulated, leading to losses for liquidity providers.
+- **Oracle Attacks**: Liquidity pools rely on oracles to determine the price of tokens in the pool. If these oracles are not secure or are tampered with, the price of the tokens can be manipulated, leading to losses for liquidity providers.
 
-Front-Running: Liquidity pools can also be vulnerable to front-running attacks, where attackers monitor transactions and try to execute their own transactions before the original transaction is processed. This can lead to losses for liquidity providers if the price of tokens changes in the interim.
+- **Front-Running**: Liquidity pools can also be vulnerable to front-running attacks, where attackers monitor transactions and try to execute their own transactions before the original transaction is processed. This can lead to losses for liquidity providers if the price of tokens changes in the interim.
 
-Flash Loan Attacks: Flash loans are a type of DeFi loan that allows users to borrow funds without collateral. Attackers can use flash loans to manipulate the price of tokens in liquidity pools, leading to losses for liquidity providers.
+- **Flash Loan Attacks**: Flash loans are a type of DeFi loan that allows users to borrow funds without collateral. Attackers can use flash loans to manipulate the price of tokens in liquidity pools, leading to losses for liquidity providers.
 
 ## The Celo Network
 
@@ -80,64 +103,60 @@ One of the biggest advantages of hosting on the Celo network is that it is highl
 Another advantage of hosting on the Celo network is that it is easy to use. The platform is designed to be developer-friendly, with a number of tools and resources that make it easy to build and deploy smart contracts. Celo also has a robust ecosystem of developers and community members who are actively working to improve the platform and support other developers.
 
 
-## Prerequisites for Building a Liquidity Pool
-
-Before building a liquidity pool, you will need a few things:
-
-1. An understanding of Solidity and smart contract programming.
-
-2. An understanding of the ERC20 token standard.
-
-3. Access to a blockchain development environment such as Truffle or Remix.
-
-4. Knowledge of the Celo network, its tools, and its features.
-
-5. Knowledge of how to create contracts on the Celo network.
-
 ## How to Build a Liquidity Pool on the Celo Network
 
 Now that you have the prerequisites for building a liquidity pool, here is how to go about building a liquidity pool on the Celo network using a contract.
 
 To start with, we begin by importing the ERC20 interface from the OpenZeppelin library since we will be handling ERC20 tokens.
 
+```solidity
 //SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/IERC20.sol";
 
+```
+
 Next, we will create the pool interface. The pool interface will have 4 functions, namely deposit, withdrawal, swap and swap rates. The pool will have the following format:
 
-/// interface pool{
+```solidity
+interface pool{
     function deposit(address tokenAddr,uint amount) external;
     function withdrawal(address token, uint256 amount) external;
     function swap(address from, address to, uint256 amount) external;
     function swapRates(address from, address to) external view returns (uint256);
     function balanceOf(address user, address token) external view returns (uint256);
-}///
+}
+```
 
 The deposit function allows users to deposit tokens into the liquidity pool. This creates the initial liquidity pool for the tokens.
 
-/// function deposit(address tokenAddr, uint amount) external {
+```solidity
+function deposit(address tokenAddr, uint amount) external {
 
 IERC20 token = IERC20(tokenAddr);
         require(token.balanceOf(msg.sender) >= amount, "Insufficient balances");
         require(token.transferFrom(msg.sender,address(this), amount), "Deposit tokens failed");
         balances[msg.sender][tokenAddr] += amount;
-    }///
+    }
+```
 
 The withdrawal function allows users to withdraw tokens from the liquidity pool.
 
-/// function withdrawal(address tokenAddr, uint amount) external{
+```solidity
+function withdrawal(address tokenAddr, uint amount) external{
         IERC20 token = IERC20(tokenAddr);
          require(balances[msg.sender][tokenAddr] >= amount,"Insufficient balance for withdrawal");
         
         require(token.transfer(msg.sender, amount), "Witdraw tokens failed");
         balances[msg.sender][tokenAddr] -= amount;
-    }///
+    }
+```
 
 The swap function allows users to swap tokens from one token to another. This is particularly useful when users want to convert their tokens from one token to another.
 
-/// function swap(address from, address to, uint amount ) external{
+```solidity
+function swap(address from, address to, uint amount ) external{
         IERC20 fromToken= IERC20(from);
         IERC20 toToken = IERC20(to);
         uint256 rates = swapRates(from, to);
@@ -147,11 +166,13 @@ The swap function allows users to swap tokens from one token to another. This is
 
         require(fromToken.transferFrom(msg.sender, address(this), amount), "Cannot withdraw tokens");
         require(toToken.transfer( msg.sender, amount*rates), "Cannot send tokens");
-    }///
+    }
+```
 
 The swap rates function allows users to check the exchange rate between two different tokens.
 
- /// function swapRates(address from, address to) view public returns (uint256){
+```solidity
+function swapRates(address from, address to) view public returns (uint256){
         IERC20 fromToken = IERC20(from);
         IERC20 toToken = IERC20(to);
 
@@ -159,13 +180,16 @@ The swap rates function allows users to check the exchange rate between two diff
         require(toToken.balanceOf(address(this)) != 0, "this token does not exist on this pool");
 
         return toToken.balanceOf(address(this))/fromToken.balanceOf(address(this));
-    } ///
+    }
+```
 
 Finally, the balance of function allows users to check their balance in the liquidity pool.
 
-/// function balanceOf(address user, address token) external view returns (uint256){
+```solidity
+function balanceOf(address user, address token) external view returns (uint256){
         return balances[user][token];
-    }/// 
+    }
+```
 
 And that is how you create your liquidity pool smart contract on Celo network.
 
@@ -190,21 +214,17 @@ To compile and deploy a smart contract on Remix IDE using its Virtual Machine, y
 
 1. Compile the code: In the "Solidity Compiler" tab, select the appropriate compiler version (any version >=0.7.0 but <0.9.0) and click "Compile" to compile your code.
 
-1. Deploy the contract: In the "Deploy & Run Transactions" tab, select the appropriate environment (e.g., JavaScript VM, or Custom RPC), and click "Deploy" to deploy your contract.
+2. Deploy the contract: In the "Deploy & Run Transactions" tab, select the appropriate environment (e.g., JavaScript VM, or Custom RPC), and click "Deploy" to deploy your contract.
 
 3. Interact with the contract: Once your contract is deployed, you can interact with it by calling its functions in the "Deployed Contracts" section on the right-hand side panel.
 
 To deploy using the celo Testnet and metamask, follow the steps below:
 
-1. Open the MetaMask extension in your browser and click on your account avatar at the top right corner.
-
-1. From the dropdown menu, click on "Settings".
-
-1. In the Settings page, scroll down and click on "Networks".
-
-1. Click on "Add Network" at the bottom of the networks list.
-
-1. Enter the following details for the new network:
+- Open the MetaMask extension in your browser and click on your account avatar at the top right corner.
+- From the dropdown menu, click on "Settings".
+- In the Settings page, scroll down and click on "Networks".
+- Click on "Add Network" at the bottom of the networks list.
+- Enter the following details for the new network:
 
     *     Network Name: Celo Alfajores Testnet
     *     New RPC URL: https://alfajores-forno.celo-testnet.org
@@ -212,13 +232,11 @@ To deploy using the celo Testnet and metamask, follow the steps below:
     *     Symbol: CELO
     *     Block Explorer URL: https://alfajores-blockscout.celo-testnet.org/
 
-1. Click "Save" to add the network to MetaMask.
-
-1. You should now see the Celo Alfajores Testnet option in the network dropdown at the top of your MetaMask extension. Select it to switch to the Alfajores Testnet network.
-
+- Click "Save" to add the network to MetaMask.
+- You should now see the Celo Alfajores Testnet option in the network dropdown at the top of your MetaMask extension. Select it to switch to the Alfajores Testnet network.
 
 
-1. With your metamask on the Celo testnet, go back to remix Ide,complie and deploy using `Injected Provider-metamask`
+With your metamask on the Celo testnet, go back to remix Ide,complie and deploy using `Injected Provider-metamask`
     ###### To get some test funds to cover the gas fee of deployment, You can use the Celo Alfajores faucet to get some testnet funds for your Celo wallet. Here's the link to the faucet: https://faucet.celo.org/alfajores   .Copy your Celo Alfajores Testnet address from metamask and paste in the field `Account Address`.Check Metamask and you should see 1CELO has been sent to your wallet. 
 
 ![](https://i.imgur.com/jjYURb7.png)
