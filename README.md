@@ -8,6 +8,8 @@ The decentralized finance (DeFi) ecosystem has been rapidly growing, and one of 
 ## Table of Content
 
 * [Introduction](https://github.com/Napolite/liquidity-pool#Introduction)
+* [Objective](https://github.com/Napolite/liquidity-pool#Objective)
+* [Prerequisites for Building a Liquidity Pool](https://github.com/Napolite/liquidity-pool#Prerequisites-for-Building-a-Liquidity-Pool)
 * [Liquidity Pools](https://github.com/Napolite/liquidity-pool#Liquidity-Pools)
     * [What is a Liquidity Pool](https://github.com/Napolite/liquidity-pool#What-is-a-Liquidity-Pool)
     * [Uses Of Liquidity Pools](https://github.com/Napolite/liquidity-pool#Uses-of-Liquidity-Pools)
@@ -24,6 +26,17 @@ The decentralized finance (DeFi) ecosystem has been rapidly growing, and one of 
 
 The objective of this tutorial is to provide an understanding of liquidity pools, their uses, and the importance they play in the decentralized finance (DeFi) ecosystem. Additionally, this tutorial aims to guide users in building a basic liquidity pool on the Celo network, while also highlighting the potential security risks associated with liquidity pools and how to mitigate them. 
 By the end of this tutorial, you should have a clear understanding of how liquidity pools work, their benefits, and the necessary precautions needed to ensure the safety of their liquidity pool investment.
+
+## Prerequisites for Building a Liquidity Pool
+
+Before building a liquidity pool, you will need a few things:
+
+- An understanding of Solidity and smart contract programming.
+- An understanding of the ERC20 token standard.
+- Access to a blockchain development environment such as Truffle or Remix.
+- Knowledge of the Celo network, its tools, and its features.
+- Knowledge of how to create contracts on the Celo network.
+
 
 First let us Talk about Liquidity Pools and The Celo Network
 
@@ -49,26 +62,27 @@ Another use of liquidity pools is to bring liquidity to new tokens. When a new t
 ## Importance of a Liquidity Pool
 Liquidity pools have become a crucial component of the decentralized finance (DeFi) ecosystem, playing an essential role in enabling a wide range of DeFi applications. Here are some of the key reasons why liquidity pools are important to the DeFi community:
 
-Liquidity pools provide a way to exchange tokens without requiring a centralized exchange, which can be costly and inefficient.
-They facilitate the trading of tokens that may not have a large market or trading volume, making it easier for investors to buy and sell these assets.
-Liquidity pools can be used to create stablecoins, which are pegged to a fiat currency or another asset, providing a reliable store of value for DeFi users.
-They enable yield farming, which involves providing liquidity to a pool and earning rewards in the form of additional tokens or fees.
-Liquidity pools can be used to create derivatives, such as options and futures, allowing investors to hedge their risks and speculate on future price movements.
+- Liquidity pools provide a way to exchange tokens without requiring a centralized exchange, which can be costly and inefficient.
+- They facilitate the trading of tokens that may not have a large market or trading volume, making it easier for investors to buy and sell these assets.
+- Liquidity pools can be used to create stablecoins, which are pegged to a fiat currency or another asset, providing a reliable store of value for DeFi users.
+- They enable yield farming, which involves providing liquidity to a pool and earning rewards in the form of additional tokens or fees.
+- Liquidity pools can be used to create derivatives, such as options and futures, allowing investors to hedge their risks and speculate on future price movements.
 
 Overall, liquidity pools play a critical role in enabling DeFi to function effectively, providing liquidity, price discovery, and opportunities for investors to generate returns. As the DeFi ecosystem continues to grow, liquidity pools are likely to become even more important, powering new use cases and providing greater flexibility and efficiency for DeFi users
 
 ## Security risks of a Liquidity Pool
 Liquidity pools have gained significant popularity in the decentralized finance (DeFi) ecosystem, but they also come with their own set of security issues. Here are some of the key security challenges to consider when it comes to liquidity pools:
 
-Smart Contract Vulnerabilities: Liquidity pool contracts are powered by smart contracts, which are susceptible to security vulnerabilities that can be exploited by attackers. These vulnerabilities include reentrancy attacks, integer overflow/underflow attacks, and more. It's crucial to ensure that the smart contract code is secure and audited by experienced professionals before deploying a liquidity pool.
+### Smart Contract Vulnerabilities
+Liquidity pool contracts are powered by smart contracts, which are susceptible to security vulnerabilities that can be exploited by attackers. These vulnerabilities include reentrancy attacks, integer overflow/underflow attacks, and more. It's crucial to ensure that the smart contract code is secure and audited by experienced professionals before deploying a liquidity pool.
 
-Impermanent Loss: Liquidity providers in a pool are exposed to a concept called "impermanent loss," which is the difference between the returns they would have earned by holding tokens outside the pool and the returns they earn by holding tokens inside the pool. Impermanent loss can happen when the price of tokens in the pool changes significantly, leading to losses for liquidity providers.
+- **Impermanent Loss**: Liquidity providers in a pool are exposed to a concept called "impermanent loss," which is the difference between the returns they would have earned by holding tokens outside the pool and the returns they earn by holding tokens inside the pool. Impermanent loss can happen when the price of tokens in the pool changes significantly, leading to losses for liquidity providers.
 
-Oracle Attacks: Liquidity pools rely on oracles to determine the price of tokens in the pool. If these oracles are not secure or are tampered with, the price of the tokens can be manipulated, leading to losses for liquidity providers.
+- **Oracle Attacks**: Liquidity pools rely on oracles to determine the price of tokens in the pool. If these oracles are not secure or are tampered with, the price of the tokens can be manipulated, leading to losses for liquidity providers.
 
-Front-Running: Liquidity pools can also be vulnerable to front-running attacks, where attackers monitor transactions and try to execute their own transactions before the original transaction is processed. This can lead to losses for liquidity providers if the price of tokens changes in the interim.
+- **Front-Running**: Liquidity pools can also be vulnerable to front-running attacks, where attackers monitor transactions and try to execute their own transactions before the original transaction is processed. This can lead to losses for liquidity providers if the price of tokens changes in the interim.
 
-Flash Loan Attacks: Flash loans are a type of DeFi loan that allows users to borrow funds without collateral. Attackers can use flash loans to manipulate the price of tokens in liquidity pools, leading to losses for liquidity providers.
+- **Flash Loan Attacks**: Flash loans are a type of DeFi loan that allows users to borrow funds without collateral. Attackers can use flash loans to manipulate the price of tokens in liquidity pools, leading to losses for liquidity providers.
 
 ## The Celo Network
 
@@ -88,20 +102,6 @@ One of the biggest advantages of hosting on the Celo network is that it is highl
 
 Another advantage of hosting on the Celo network is that it is easy to use. The platform is designed to be developer-friendly, with a number of tools and resources that make it easy to build and deploy smart contracts. Celo also has a robust ecosystem of developers and community members who are actively working to improve the platform and support other developers.
 
-
-## Prerequisites for Building a Liquidity Pool
-
-Before building a liquidity pool, you will need a few things:
-
-1. An understanding of Solidity and smart contract programming.
-
-2. An understanding of the ERC20 token standard.
-
-3. Access to a blockchain development environment such as Truffle or Remix.
-
-4. Knowledge of the Celo network, its tools, and its features.
-
-5. Knowledge of how to create contracts on the Celo network.
 
 ## How to Build a Liquidity Pool on the Celo Network
 
@@ -214,21 +214,17 @@ To compile and deploy a smart contract on Remix IDE using its Virtual Machine, y
 
 1. Compile the code: In the "Solidity Compiler" tab, select the appropriate compiler version (any version >=0.7.0 but <0.9.0) and click "Compile" to compile your code.
 
-1. Deploy the contract: In the "Deploy & Run Transactions" tab, select the appropriate environment (e.g., JavaScript VM, or Custom RPC), and click "Deploy" to deploy your contract.
+2. Deploy the contract: In the "Deploy & Run Transactions" tab, select the appropriate environment (e.g., JavaScript VM, or Custom RPC), and click "Deploy" to deploy your contract.
 
 3. Interact with the contract: Once your contract is deployed, you can interact with it by calling its functions in the "Deployed Contracts" section on the right-hand side panel.
 
 To deploy using the celo Testnet and metamask, follow the steps below:
 
-1. Open the MetaMask extension in your browser and click on your account avatar at the top right corner.
-
-1. From the dropdown menu, click on "Settings".
-
-1. In the Settings page, scroll down and click on "Networks".
-
-1. Click on "Add Network" at the bottom of the networks list.
-
-1. Enter the following details for the new network:
+- Open the MetaMask extension in your browser and click on your account avatar at the top right corner.
+- From the dropdown menu, click on "Settings".
+- In the Settings page, scroll down and click on "Networks".
+- Click on "Add Network" at the bottom of the networks list.
+- Enter the following details for the new network:
 
     *     Network Name: Celo Alfajores Testnet
     *     New RPC URL: https://alfajores-forno.celo-testnet.org
@@ -236,13 +232,11 @@ To deploy using the celo Testnet and metamask, follow the steps below:
     *     Symbol: CELO
     *     Block Explorer URL: https://alfajores-blockscout.celo-testnet.org/
 
-1. Click "Save" to add the network to MetaMask.
-
-1. You should now see the Celo Alfajores Testnet option in the network dropdown at the top of your MetaMask extension. Select it to switch to the Alfajores Testnet network.
-
+- Click "Save" to add the network to MetaMask.
+- You should now see the Celo Alfajores Testnet option in the network dropdown at the top of your MetaMask extension. Select it to switch to the Alfajores Testnet network.
 
 
-1. With your metamask on the Celo testnet, go back to remix Ide,complie and deploy using `Injected Provider-metamask`
+With your metamask on the Celo testnet, go back to remix Ide,complie and deploy using `Injected Provider-metamask`
     ###### To get some test funds to cover the gas fee of deployment, You can use the Celo Alfajores faucet to get some testnet funds for your Celo wallet. Here's the link to the faucet: https://faucet.celo.org/alfajores   .Copy your Celo Alfajores Testnet address from metamask and paste in the field `Account Address`.Check Metamask and you should see 1CELO has been sent to your wallet. 
 
 ![](https://i.imgur.com/jjYURb7.png)
